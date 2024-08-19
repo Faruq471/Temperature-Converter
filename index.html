@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Temperature</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "poppins";
+        }
+
+        body {
+            background: url(Thermometer.jpeg);
+            /* background: linear-gradient(wheat,white); */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        main {
+            background-color: azure;
+            border: 1px solid azure;
+            width: 55%;
+            padding: 10px;
+            margin: 50px auto;
+            height: fit-content;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center
+        }
+
+        h2 span {
+            color: teal;
+        }
+
+        .parent {
+            margin: 20px 0 0 0;
+        }
+
+        .parent input {
+            margin: 5px 0;
+            width: 95%;
+        }
+
+        .parent button {
+            background-color: rgb(13, 124, 228);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+        }
+
+        .output p {
+            width: 95%;
+            border-bottom: 2px solid red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2>TEMPERATURE <span>CONVERTER</span></h2>
+        <div class="parent">
+            <label for="inp">Enter Temperatue (°C) : </label><br>
+            <input type="number" id="input"><br>
+            <button onclick="convertTemp()">Convert</button>
+        </div>
+        <br>
+        <p>Result : </p>
+        <div class="output">
+            <p id="output"> </p>
+        </div>
+    </main>
+</body>
+
+</html>
+<script>
+
+    outputValue = ''
+    function convertTemp() {
+        let input = document.getElementById('input')
+        let outputValue = document.getElementById('output')
+
+        if (input.value.trim() === '') {
+            outputValue.innerHTML = ''
+            alert('Please input a number')
+            return
+        }
+        if (input.value < -273.15) {
+            outputValue.innerHTML = ''
+            alert(`You've exceeded absolute zero,please enter a higher value`)
+            return
+        }
+
+        let solution = (`${input.value}` * (9 / 5)) + 32
+
+        outputValue.innerHTML = `The value of ${input.value}°C is ${solution}°F`
+        input.value = ''
+    }
+
+
+</script>
